@@ -1,0 +1,587 @@
+/content/yolov5
+wandb: WARNING ⚠️ wandb is deprecated and will be removed in a future release. See supported integrations at https://github.com/ultralytics/yolov5#integrations.
+train: weights=yolov5s.pt, cfg=, data=/content/drive/MyDrive/yolo_project/dataset/data.yaml, hyp=data/hyps/hyp.scratch-low.yaml, epochs=30, batch_size=16, imgsz=640, rect=False, resume=False, nosave=False, noval=False, noautoanchor=False, noplots=False, evolve=None, evolve_population=data/hyps, resume_evolve=None, bucket=, cache=None, image_weights=False, device=, multi_scale=False, single_cls=False, optimizer=SGD, sync_bn=False, workers=8, project=runs/train, name=metro_yolov5s_e10, exist_ok=False, quad=False, cos_lr=False, label_smoothing=0.0, patience=100, freeze=[0], save_period=-1, seed=0, local_rank=-1, entity=None, upload_dataset=False, bbox_interval=-1, artifact_alias=latest, ndjson_console=False, ndjson_file=False
+github: up to date with https://github.com/ultralytics/yolov5 ✅
+YOLOv5 🚀 v7.0-484-g70b964b6 Python-3.12.13 torch-2.10.0+cu128 CUDA:0 (Tesla T4, 14913MiB)
+
+hyperparameters: lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=0.05, cls=0.5, cls_pw=1.0, obj=1.0, obj_pw=1.0, iou_t=0.2, anchor_t=4.0, fl_gamma=0.0, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.0, copy_paste=0.0
+Comet: run 'pip install comet_ml' to automatically track and visualize YOLOv5 🚀 runs in Comet
+TensorBoard: Start with 'tensorboard --logdir runs/train', view at http://localhost:6006/
+Downloading https://github.com/ultralytics/assets/releases/download/v0.0.0/Arial.ttf to /root/.config/Ultralytics/Arial.ttf...
+100% 755k/755k [00:00<00:00, 26.6MB/s]
+Downloading https://github.com/ultralytics/yolov5/releases/download/v7.0/yolov5s.pt to yolov5s.pt...
+100% 14.1M/14.1M [00:00<00:00, 114MB/s] 
+
+Overriding model.yaml nc=80 with nc=1
+
+                 from  n    params  module                                  arguments                     
+  0                -1  1      3520  models.common.Conv                      [3, 32, 6, 2, 2]              
+  1                -1  1     18560  models.common.Conv                      [32, 64, 3, 2]                
+  2                -1  1     18816  models.common.C3                        [64, 64, 1]                   
+  3                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]               
+  4                -1  2    115712  models.common.C3                        [128, 128, 2]                 
+  5                -1  1    295424  models.common.Conv                      [128, 256, 3, 2]              
+  6                -1  3    625152  models.common.C3                        [256, 256, 3]                 
+  7                -1  1   1180672  models.common.Conv                      [256, 512, 3, 2]              
+  8                -1  1   1182720  models.common.C3                        [512, 512, 1]                 
+  9                -1  1    656896  models.common.SPPF                      [512, 512, 5]                 
+ 10                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]              
+ 11                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']          
+ 12           [-1, 6]  1         0  models.common.Concat                    [1]                           
+ 13                -1  1    361984  models.common.C3                        [512, 256, 1, False]          
+ 14                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]              
+ 15                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']          
+ 16           [-1, 4]  1         0  models.common.Concat                    [1]                           
+ 17                -1  1     90880  models.common.C3                        [256, 128, 1, False]          
+ 18                -1  1    147712  models.common.Conv                      [128, 128, 3, 2]              
+ 19          [-1, 14]  1         0  models.common.Concat                    [1]                           
+ 20                -1  1    296448  models.common.C3                        [256, 256, 1, False]          
+ 21                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]              
+ 22          [-1, 10]  1         0  models.common.Concat                    [1]                           
+ 23                -1  1   1182720  models.common.C3                        [512, 512, 1, False]          
+ 24      [17, 20, 23]  1     16182  models.yolo.Detect                      [1, [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]], [128, 256, 512]]
+Model summary: 214 layers, 7022326 parameters, 7022326 gradients, 15.9 GFLOPs
+
+Transferred 343/349 items from yolov5s.pt
+/content/yolov5/models/common.py:900: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with amp.autocast(autocast):
+/content/yolov5/models/common.py:900: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with amp.autocast(autocast):
+AMP: checks passed ✅
+optimizer: SGD(lr=0.01) with parameter groups 57 weight(decay=0.0), 60 weight(decay=0.0005), 60 bias
+albumentations: 1 validation error for InitSchema
+size
+  Field required [type=missing, input_value={'scale': (0.8, 1.0), 'ra...: None, 'strict': False}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+train: Scanning /content/drive/MyDrive/yolo_project/dataset/train/labels.cache... 81 images, 9 backgrounds, 0 corrupt: 100% 81/81 [00:00<?, ?it/s]
+val: Scanning /content/drive/MyDrive/yolo_project/dataset/valid/labels.cache... 21 images, 1 backgrounds, 0 corrupt: 100% 21/21 [00:00<?, ?it/s]
+
+AutoAnchor: 5.23 anchors/target, 1.000 Best Possible Recall (BPR). Current anchors are a good fit to dataset ✅
+Plotting labels to runs/train/metro_yolov5s_e10/labels.jpg... 
+/content/yolov5/train.py:357: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=amp)
+Image sizes 640 train, 640 val
+Using 2 dataloader workers
+Logging results to runs/train/metro_yolov5s_e10
+Starting training for 30 epochs...
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       0/29      3.37G     0.1231    0.06221          0        175        640:  17% 1/6 [00:27<02:18, 27.78s/it]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       0/29      3.42G     0.1221    0.06434          0        194        640:  33% 2/6 [00:28<00:46, 11.63s/it]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       0/29      3.42G     0.1212    0.06601          0        190        640:  50% 3/6 [00:30<00:21,  7.30s/it]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       0/29      3.42G     0.1212     0.0673          0        205        640:  67% 4/6 [00:30<00:09,  4.55s/it]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       0/29      3.42G     0.1212    0.06557          0        145        640:  83% 5/6 [00:32<00:03,  3.53s/it]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       0/29      3.43G     0.1211    0.06387          0          9        640: 100% 6/6 [00:33<00:00,  5.53s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:02<00:00,  2.50s/it]
+                   all         21        159    0.00365      0.145    0.00259   0.000624
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       1/29      3.66G     0.1187    0.06887          0        181        640:  17% 1/6 [00:00<00:01,  3.46it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       1/29      3.66G     0.1169    0.06884          0        176        640:  33% 2/6 [00:00<00:01,  3.72it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       1/29      3.66G     0.1172    0.07199          0        224        640:  50% 3/6 [00:00<00:00,  4.10it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       1/29      3.66G     0.1164    0.07315          0        208        640:  67% 4/6 [00:01<00:00,  3.95it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       1/29      3.66G     0.1157    0.07447          0        210        640:  83% 5/6 [00:02<00:00,  1.88it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       1/29      3.66G     0.1149    0.08801          0         27        640: 100% 6/6 [00:02<00:00,  2.70it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.27it/s]
+                   all         21        159    0.00841      0.333    0.00743    0.00143
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       2/29      3.66G     0.1096     0.1016          0        279        640:  17% 1/6 [00:00<00:01,  4.47it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       2/29      3.66G     0.1077     0.0898          0        182        640:  33% 2/6 [00:00<00:00,  4.65it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       2/29      3.66G     0.1065    0.08882          0        210        640:  50% 3/6 [00:00<00:00,  4.63it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       2/29      3.66G     0.1061    0.08801          0        217        640:  67% 4/6 [00:00<00:00,  3.97it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       2/29      3.66G     0.1055     0.0878          0        212        640:  83% 5/6 [00:01<00:00,  3.96it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       2/29      3.66G     0.1057    0.09847          0         28        640: 100% 6/6 [00:01<00:00,  4.40it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.34it/s]
+                   all         21        159     0.0239      0.654      0.032    0.00623
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       3/29      3.66G     0.1008    0.09948          0        241        640:  17% 1/6 [00:00<00:01,  4.91it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       3/29      3.66G    0.09842    0.08398          0        148        640:  33% 2/6 [00:00<00:00,  4.81it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       3/29      3.66G    0.09872     0.0899          0        250        640:  50% 3/6 [00:00<00:00,  4.07it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       3/29      3.66G    0.09832    0.09455          0        255        640:  67% 4/6 [00:00<00:00,  4.26it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       3/29      3.66G    0.09803    0.09128          0        179        640:  83% 5/6 [00:01<00:00,  2.64it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       3/29      3.66G    0.09651     0.1042          0         22        640: 100% 6/6 [00:01<00:00,  3.48it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.66it/s]
+                   all         21        159      0.152       0.39      0.146     0.0362
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       4/29      3.66G     0.0936      0.106          0        247        640:  17% 1/6 [00:00<00:01,  4.19it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       4/29      3.66G    0.09377    0.09841          0        212        640:  33% 2/6 [00:00<00:00,  4.59it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       4/29      3.66G    0.09287      0.094          0        198        640:  50% 3/6 [00:00<00:00,  4.46it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       4/29      3.66G    0.09178    0.09041          0        182        640:  67% 4/6 [00:00<00:00,  4.74it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       4/29      3.66G    0.09143    0.08919          0        197        640:  83% 5/6 [00:01<00:00,  3.32it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       4/29      3.66G    0.09188    0.08081          0          4        640: 100% 6/6 [00:01<00:00,  3.95it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.69it/s]
+                   all         21        159      0.314       0.44      0.266     0.0777
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       5/29      3.66G    0.08995    0.09568          0        237        640:  17% 1/6 [00:00<00:01,  3.62it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       5/29      3.66G    0.08779    0.09236          0        220        640:  33% 2/6 [00:00<00:01,  3.76it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       5/29      3.66G    0.08687    0.09423          0        242        640:  50% 3/6 [00:01<00:01,  2.06it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       5/29      3.66G    0.08684     0.1001          0        340        640:  67% 4/6 [00:01<00:00,  2.61it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       5/29      3.66G    0.08616    0.09414          0        179        640:  83% 5/6 [00:02<00:00,  1.63it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       5/29      3.66G    0.08386    0.09233          0         12        640: 100% 6/6 [00:02<00:00,  2.21it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.61it/s]
+                   all         21        159      0.232      0.358      0.203     0.0487
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       6/29      3.66G     0.0848    0.08691          0        230        640:  17% 1/6 [00:00<00:01,  4.36it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       6/29      3.66G    0.08353    0.08911          0        254        640:  33% 2/6 [00:00<00:00,  4.54it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       6/29      3.66G    0.08303    0.09063          0        267        640:  50% 3/6 [00:00<00:00,  3.46it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       6/29      3.66G    0.08508    0.08492          0        174        640:  67% 4/6 [00:01<00:00,  3.85it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       6/29      3.66G    0.08496    0.08562          0        245        640:  83% 5/6 [00:01<00:00,  2.79it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       6/29      3.66G    0.08571    0.07881          0          4        640: 100% 6/6 [00:01<00:00,  3.57it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.75it/s]
+                   all         21        159       0.25      0.421      0.251     0.0701
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       7/29      3.66G      0.077    0.09041          0        251        640:  17% 1/6 [00:00<00:01,  4.43it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       7/29      3.66G    0.07714    0.09685          0        268        640:  33% 2/6 [00:00<00:00,  4.81it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       7/29      3.66G    0.07521    0.09312          0        227        640:  50% 3/6 [00:00<00:00,  3.83it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       7/29      3.66G    0.07453    0.08976          0        206        640:  67% 4/6 [00:00<00:00,  4.21it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       7/29      3.66G    0.07472    0.08798          0        215        640:  83% 5/6 [00:01<00:00,  2.48it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       7/29      3.66G    0.07421    0.09201          0         16        640: 100% 6/6 [00:01<00:00,  3.40it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.07it/s]
+                   all         21        159      0.262      0.478       0.25     0.0721
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       8/29      3.66G    0.07665    0.07443          0        192        640:  17% 1/6 [00:00<00:01,  4.25it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       8/29      3.66G    0.07378    0.07578          0        207        640:  33% 2/6 [00:00<00:00,  4.63it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       8/29      3.66G    0.07218    0.07705          0        216        640:  50% 3/6 [00:00<00:00,  4.40it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       8/29      3.66G    0.07247    0.07858          0        227        640:  67% 4/6 [00:00<00:00,  4.41it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       8/29      3.66G    0.07306    0.08674          0        340        640:  83% 5/6 [00:01<00:00,  3.45it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       8/29      3.67G    0.07284    0.08998          0         18        640: 100% 6/6 [00:01<00:00,  4.00it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.92it/s]
+                   all         21        159      0.336      0.497      0.382      0.135
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       9/29      3.67G    0.07191    0.08456          0        238        640:  17% 1/6 [00:00<00:01,  4.82it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       9/29      3.67G    0.07166    0.08433          0        229        640:  33% 2/6 [00:00<00:00,  4.96it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       9/29      3.67G    0.07199    0.08149          0        215        640:  50% 3/6 [00:00<00:00,  4.43it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       9/29      3.67G    0.07225    0.07658          0        163        640:  67% 4/6 [00:00<00:00,  4.04it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       9/29      3.67G    0.07246    0.07502          0        178        640:  83% 5/6 [00:02<00:00,  1.77it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+       9/29      3.67G    0.07117    0.06834          0          2        640: 100% 6/6 [00:02<00:00,  2.59it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.42it/s]
+                   all         21        159      0.503      0.548      0.507       0.17
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      10/29      3.67G    0.06961    0.06285          0        174        640:  17% 1/6 [00:00<00:01,  3.69it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      10/29      3.67G    0.06485    0.06273          0        147        640:  33% 2/6 [00:00<00:00,  4.39it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      10/29      3.67G    0.06484    0.06262          0        166        640:  50% 3/6 [00:00<00:00,  4.45it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      10/29      3.67G    0.06712    0.06581          0        225        640:  67% 4/6 [00:00<00:00,  4.54it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      10/29      3.67G    0.06852     0.0648          0        159        640:  83% 5/6 [00:01<00:00,  2.76it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      10/29      3.67G    0.06993    0.07021          0         18        640: 100% 6/6 [00:01<00:00,  3.56it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.78it/s]
+                   all         21        159      0.532      0.522      0.512      0.181
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      11/29      3.67G    0.06309    0.06668          0        170        640:  17% 1/6 [00:00<00:01,  4.96it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      11/29      3.67G    0.06643     0.0705          0        204        640:  33% 2/6 [00:00<00:00,  5.00it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      11/29      3.67G    0.06845    0.07462          0        232        640:  50% 3/6 [00:00<00:00,  4.78it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      11/29      3.67G    0.06874    0.07537          0        206        640:  67% 4/6 [00:00<00:00,  4.66it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      11/29      3.67G    0.06877    0.07438          0        201        640:  83% 5/6 [00:01<00:00,  2.68it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      11/29      3.67G    0.07059    0.06748          0          2        640: 100% 6/6 [00:01<00:00,  3.61it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.13it/s]
+                   all         21        159      0.554      0.572      0.588      0.233
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      12/29      3.67G     0.0714    0.08635          0        254        640:  17% 1/6 [00:00<00:01,  4.99it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      12/29      3.67G    0.07069    0.07742          0        199        640:  33% 2/6 [00:00<00:00,  5.02it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      12/29      3.67G    0.07059    0.07791          0        228        640:  50% 3/6 [00:00<00:00,  4.63it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      12/29      3.67G    0.06925     0.0761          0        205        640:  67% 4/6 [00:00<00:00,  4.51it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      12/29      3.67G    0.06909    0.07666          0        229        640:  83% 5/6 [00:01<00:00,  4.37it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      12/29      3.67G    0.06944    0.09401          0         31        640: 100% 6/6 [00:01<00:00,  4.86it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.18it/s]
+                   all         21        159      0.623      0.535      0.577      0.197
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      13/29      3.67G    0.07159    0.08397          0        260        640:  17% 1/6 [00:00<00:00,  5.08it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      13/29      3.67G    0.06875     0.0796          0        206        640:  33% 2/6 [00:00<00:00,  4.89it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      13/29      3.67G    0.06828    0.07998          0        238        640:  50% 3/6 [00:00<00:00,  3.02it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      13/29      3.67G    0.06815    0.07542          0        165        640:  67% 4/6 [00:01<00:00,  3.27it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      13/29      3.67G    0.06765    0.07728          0        258        640:  83% 5/6 [00:01<00:00,  2.18it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      13/29      3.67G    0.06647    0.08152          0         17        640: 100% 6/6 [00:02<00:00,  2.78it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.47it/s]
+                   all         21        159       0.57      0.625      0.612       0.24
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      14/29      3.67G    0.06442    0.06893          0        201        640:  17% 1/6 [00:00<00:01,  3.42it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      14/29      3.67G    0.06416    0.06877          0        191        640:  33% 2/6 [00:00<00:01,  3.67it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      14/29      3.67G    0.06561    0.07103          0        229        640:  50% 3/6 [00:00<00:00,  3.20it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      14/29      3.67G    0.06587    0.06906          0        164        640:  67% 4/6 [00:01<00:00,  3.49it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      14/29      3.67G    0.06568    0.06868          0        204        640:  83% 5/6 [00:01<00:00,  2.13it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      14/29      3.67G    0.06575    0.08067          0         23        640: 100% 6/6 [00:02<00:00,  2.84it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.99it/s]
+                   all         21        159      0.428      0.541      0.425      0.194
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      15/29      3.67G    0.06707    0.05928          0        166        640:  17% 1/6 [00:00<00:01,  4.43it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      15/29      3.67G    0.06747    0.07607          0        269        640:  33% 2/6 [00:00<00:00,  4.35it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      15/29      3.67G    0.06706    0.07748          0        260        640:  50% 3/6 [00:00<00:00,  4.70it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      15/29      3.67G    0.06658    0.07619          0        210        640:  67% 4/6 [00:00<00:00,  4.67it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      15/29      3.67G    0.06569    0.07203          0        142        640:  83% 5/6 [00:01<00:00,  4.06it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      15/29      3.67G    0.06624    0.07163          0         12        640: 100% 6/6 [00:01<00:00,  4.57it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.25it/s]
+                   all         21        159       0.35      0.503      0.358      0.141
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      16/29      3.67G    0.06692    0.07237          0        209        640:  17% 1/6 [00:00<00:01,  4.75it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      16/29      3.67G    0.06797    0.07876          0        260        640:  33% 2/6 [00:00<00:00,  4.83it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      16/29      3.67G     0.0677     0.0781          0        241        640:  50% 3/6 [00:00<00:00,  3.10it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      16/29      3.67G    0.06761    0.07346          0        163        640:  67% 4/6 [00:01<00:00,  3.44it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      16/29      3.67G    0.06631    0.07226          0        198        640:  83% 5/6 [00:01<00:00,  2.75it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      16/29      3.67G    0.06076    0.06918          0          9        640: 100% 6/6 [00:01<00:00,  3.51it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.11it/s]
+                   all         21        159      0.651      0.579      0.648      0.299
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      17/29      3.67G    0.05857     0.0915          0        255        640:  17% 1/6 [00:00<00:00,  5.21it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      17/29      3.67G    0.06001    0.08395          0        219        640:  33% 2/6 [00:00<00:00,  4.88it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      17/29      3.67G    0.06165    0.08207          0        243        640:  50% 3/6 [00:00<00:00,  3.06it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      17/29      3.67G    0.06265    0.08079          0        231        640:  67% 4/6 [00:01<00:00,  3.49it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      17/29      3.67G    0.06306    0.07664          0        178        640:  83% 5/6 [00:01<00:00,  2.51it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      17/29      3.67G    0.06265    0.07079          0          7        640: 100% 6/6 [00:01<00:00,  3.15it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.43it/s]
+                   all         21        159      0.451      0.503      0.427      0.179
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      18/29      3.67G    0.06676    0.07238          0        220        640:  17% 1/6 [00:00<00:01,  3.91it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      18/29      3.67G    0.06595    0.07208          0        212        640:  33% 2/6 [00:00<00:00,  4.43it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      18/29      3.67G    0.06406    0.06586          0        147        640:  50% 3/6 [00:00<00:01,  2.89it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      18/29      3.67G    0.06402    0.06453          0        171        640:  67% 4/6 [00:01<00:00,  2.78it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      18/29      3.67G     0.0631     0.0651          0        188        640:  83% 5/6 [00:02<00:00,  1.84it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      18/29      3.67G    0.05944    0.06253          0          7        640: 100% 6/6 [00:02<00:00,  2.53it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.80it/s]
+                   all         21        159      0.667      0.629      0.676      0.295
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      19/29      3.67G    0.05884    0.06847          0        204        640:  17% 1/6 [00:00<00:01,  4.95it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      19/29      3.67G    0.05889    0.07256          0        222        640:  33% 2/6 [00:00<00:00,  4.63it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      19/29      3.67G    0.06001    0.07686          0        263        640:  50% 3/6 [00:00<00:00,  3.83it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      19/29      3.67G    0.05942    0.07593          0        226        640:  67% 4/6 [00:00<00:00,  3.96it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      19/29      3.67G     0.0596    0.07874          0        279        640:  83% 5/6 [00:01<00:00,  2.84it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      19/29      3.67G    0.05849    0.07726          0         13        640: 100% 6/6 [00:01<00:00,  3.55it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.82it/s]
+                   all         21        159      0.638      0.623      0.651      0.279
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      20/29      3.67G    0.06061    0.07022          0        206        640:  17% 1/6 [00:00<00:01,  4.35it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      20/29      3.67G    0.05999    0.06444          0        149        640:  33% 2/6 [00:00<00:00,  4.61it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      20/29      3.67G    0.06005    0.06807          0        215        640:  50% 3/6 [00:00<00:00,  3.08it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      20/29      3.67G     0.0599    0.06647          0        172        640:  67% 4/6 [00:01<00:00,  3.36it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      20/29      3.67G    0.05885    0.06815          0        210        640:  83% 5/6 [00:01<00:00,  2.76it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      20/29      3.67G    0.05839    0.06723          0         12        640: 100% 6/6 [00:01<00:00,  3.46it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.78it/s]
+                   all         21        159      0.566       0.61      0.611      0.295
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      21/29      3.67G    0.05408    0.07179          0        211        640:  17% 1/6 [00:00<00:01,  4.18it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      21/29      3.67G    0.05689    0.06751          0        182        640:  33% 2/6 [00:00<00:00,  4.17it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      21/29      3.67G    0.05761    0.06442          0        156        640:  50% 3/6 [00:00<00:01,  2.95it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      21/29      3.67G    0.05753    0.06538          0        197        640:  67% 4/6 [00:01<00:00,  3.35it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      21/29      3.67G    0.05812    0.06666          0        212        640:  83% 5/6 [00:01<00:00,  2.76it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      21/29      3.67G    0.05651    0.06237          0          8        640: 100% 6/6 [00:01<00:00,  3.30it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.04it/s]
+                   all         21        159      0.545      0.585      0.578      0.278
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      22/29      3.67G    0.05843    0.08155          0        240        640:  17% 1/6 [00:00<00:01,  4.86it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      22/29      3.67G    0.05809    0.07993          0        230        640:  33% 2/6 [00:00<00:00,  4.67it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      22/29      3.67G    0.05779    0.07605          0        216        640:  50% 3/6 [00:00<00:00,  4.66it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      22/29      3.67G    0.05747    0.07544          0        218        640:  67% 4/6 [00:00<00:00,  4.25it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      22/29      3.67G    0.05683    0.07178          0        174        640:  83% 5/6 [00:01<00:00,  3.77it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      22/29      3.67G    0.06031     0.0979          0         42        640: 100% 6/6 [00:01<00:00,  4.13it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.64it/s]
+                   all         21        159      0.714      0.597      0.679      0.358
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      23/29      3.67G    0.06044    0.06251          0        179        640:  17% 1/6 [00:00<00:01,  3.90it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      23/29      3.67G     0.0588    0.07072          0        232        640:  33% 2/6 [00:00<00:01,  3.06it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      23/29      3.67G    0.05701    0.06909          0        190        640:  50% 3/6 [00:01<00:01,  2.05it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      23/29      3.67G    0.05538    0.07168          0        225        640:  67% 4/6 [00:01<00:00,  2.43it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      23/29      3.67G    0.05454    0.06924          0        169        640:  83% 5/6 [00:02<00:00,  1.87it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      23/29      3.67G    0.05552    0.06695          0         10        640: 100% 6/6 [00:02<00:00,  2.41it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.77it/s]
+                   all         21        159      0.661      0.591      0.679      0.356
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      24/29      3.67G    0.05595    0.06741          0        177        640:  17% 1/6 [00:00<00:01,  4.89it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      24/29      3.67G    0.05438    0.07021          0        208        640:  33% 2/6 [00:00<00:00,  4.68it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      24/29      3.67G     0.0543    0.06724          0        175        640:  50% 3/6 [00:00<00:00,  3.49it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      24/29      3.67G    0.05326    0.06708          0        180        640:  67% 4/6 [00:01<00:00,  3.51it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      24/29      3.67G    0.05366    0.07036          0        250        640:  83% 5/6 [00:01<00:00,  2.76it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      24/29      3.67G    0.05243     0.0667          0          6        640: 100% 6/6 [00:01<00:00,  3.57it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.39it/s]
+                   all         21        159      0.607      0.597      0.669      0.341
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      25/29      3.67G    0.05437    0.06865          0        197        640:  17% 1/6 [00:00<00:00,  5.13it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      25/29      3.67G    0.05524     0.0764          0        265        640:  33% 2/6 [00:00<00:01,  3.72it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      25/29      3.67G      0.054    0.06794          0        136        640:  50% 3/6 [00:00<00:01,  2.90it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      25/29      3.67G    0.05298    0.06396          0        137        640:  67% 4/6 [00:01<00:00,  3.38it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      25/29      3.67G    0.05278     0.0691          0        265        640:  83% 5/6 [00:01<00:00,  2.55it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      25/29      3.67G    0.05268    0.06905          0          9        640: 100% 6/6 [00:01<00:00,  3.19it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.29it/s]
+                   all         21        159      0.513      0.572      0.594      0.334
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      26/29      3.67G    0.05268    0.07803          0        243        640:  17% 1/6 [00:00<00:01,  4.64it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      26/29      3.67G    0.05259    0.07885          0        252        640:  33% 2/6 [00:00<00:00,  4.64it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      26/29      3.67G    0.05195    0.07484          0        194        640:  50% 3/6 [00:00<00:00,  4.13it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      26/29      3.67G     0.0521    0.07195          0        177        640:  67% 4/6 [00:00<00:00,  3.89it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      26/29      3.67G    0.05179    0.07091          0        202        640:  83% 5/6 [00:01<00:00,  2.43it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      26/29      3.67G    0.05333    0.07759          0         21        640: 100% 6/6 [00:01<00:00,  3.32it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.45it/s]
+                   all         21        159      0.655      0.742      0.767      0.442
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      27/29      3.67G    0.05017    0.07576          0        224        640:  17% 1/6 [00:00<00:01,  3.70it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      27/29      3.67G    0.05031    0.07708          0        248        640:  33% 2/6 [00:00<00:01,  3.41it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      27/29      3.67G    0.05023    0.06995          0        146        640:  50% 3/6 [00:00<00:00,  3.87it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      27/29      3.67G    0.04984    0.06705          0        178        640:  67% 4/6 [00:01<00:00,  4.00it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      27/29      3.67G    0.05019    0.07086          0        255        640:  83% 5/6 [00:02<00:00,  1.90it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      27/29      3.67G    0.04934    0.07159          0         11        640: 100% 6/6 [00:02<00:00,  2.52it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  1.73it/s]
+                   all         21        159      0.684      0.717      0.776      0.427
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      28/29      3.67G    0.05165    0.06635          0        215        640:  17% 1/6 [00:00<00:01,  4.81it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      28/29      3.67G    0.04918    0.06719          0        191        640:  33% 2/6 [00:00<00:00,  4.75it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      28/29      3.67G    0.04849    0.05876          0        111        640:  50% 3/6 [00:00<00:00,  4.63it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      28/29      3.67G    0.04941    0.06075          0        210        640:  67% 4/6 [00:00<00:00,  4.24it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      28/29      3.67G    0.04892    0.06173          0        187        640:  83% 5/6 [00:01<00:00,  2.70it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      28/29      3.67G     0.0475    0.06042          0          7        640: 100% 6/6 [00:01<00:00,  3.63it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.03it/s]
+                   all         21        159       0.66      0.755      0.777      0.473
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+  0% 0/6 [00:00<?, ?it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      29/29      3.67G    0.04865     0.0618          0        178        640:  17% 1/6 [00:00<00:01,  4.94it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      29/29      3.67G    0.04729    0.06405          0        201        640:  33% 2/6 [00:00<00:00,  4.60it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      29/29      3.67G    0.04709    0.06529          0        202        640:  50% 3/6 [00:00<00:00,  4.84it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      29/29      3.67G    0.04796    0.07075          0        283        640:  67% 4/6 [00:00<00:00,  4.77it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      29/29      3.67G    0.04854    0.07119          0        218        640:  83% 5/6 [00:01<00:00,  2.79it/s]/content/yolov5/train.py:414: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+      29/29      3.67G    0.04709     0.0725          0         13        640: 100% 6/6 [00:01<00:00,  3.51it/s]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  2.80it/s]
+                   all         21        159      0.766      0.658      0.791      0.482
+
+30 epochs completed in 0.037 hours.
+Optimizer stripped from runs/train/metro_yolov5s_e10/weights/last.pt, 14.4MB
+Optimizer stripped from runs/train/metro_yolov5s_e10/weights/best.pt, 14.4MB
+
+Validating runs/train/metro_yolov5s_e10/weights/best.pt...
+Fusing layers... 
+Model summary: 157 layers, 7012822 parameters, 0 gradients, 15.8 GFLOPs
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100% 1/1 [00:00<00:00,  3.07it/s]
+                   all         21        159      0.766      0.654       0.79      0.482
+Results saved to runs/train/metro_yolov5s_e10

@@ -1,0 +1,89 @@
+{
+  "report": {
+    "title": "Практика МИРЭА: оценка загрузки вагона с YOLOv5",
+    "total_pdf_pages": 44,
+    "printed_page_offset": 4,
+    "sha256": "f7d4c032b977507015036eaa4a8c81078773726e38cadc86dd81221e69cd4558"
+  },
+  "baseline": {
+    "count_mae": 1.05,
+    "load_mae_pp": 5.24,
+    "source": "report printed page 26; notebook cell 4; rerun CSV",
+    "status": "reported and independently rerun"
+  },
+  "fine_tuned_reported_run": {
+    "count_mae": 1.9,
+    "load_mae_pp": 9.52,
+    "source": "report printed page 31 (PDF page 35)",
+    "status": "reported aggregate; per-image CSV and checkpoint unavailable",
+    "epoch_assignment": "not independently verified; report describes main fine-tuning study"
+  },
+  "short_run": {
+    "epochs_reported": 10,
+    "count_mae": 28.61904761904762,
+    "max_count_error": 64,
+    "mean_pred_count": 36.19,
+    "source": "report printed pages 30,33; original notebook cell 7",
+    "status": "report attributes to 10 epochs; notebook output agrees with catastrophic overcount, but checkpoint path is reused by 30-epoch command"
+  },
+  "postprocessing": {
+    "conf": [
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7
+    ],
+    "iou": [
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45
+    ],
+    "max_det": [
+      15,
+      20,
+      25,
+      30,
+      40
+    ],
+    "n_settings": 350,
+    "source": "report printed pages 32–33; notebook cell 11",
+    "reported_conclusion": "no tested setting beat the pretrained baseline",
+    "full_ranking_preserved": false
+  },
+  "report_figures": [
+    {
+      "file": "detection-11.png",
+      "pdf_page": 39,
+      "printed_page": 35,
+      "predicted_people": 11,
+      "shown_load_percent": 55,
+      "sha256": "6f6915d1e3f62993cdfcd7cd45b5bb5231ac4db156c3e24e898e4af8000419de"
+    },
+    {
+      "file": "detection-14.png",
+      "pdf_page": 40,
+      "printed_page": 36,
+      "predicted_people": 14,
+      "shown_load_percent": 70,
+      "sha256": "94a528f2df5619fa086f3b29efcac42612762a34323357ca69b4ae43cd737f7c"
+    },
+    {
+      "file": "detection-2.png",
+      "pdf_page": 40,
+      "printed_page": 36,
+      "predicted_people": 2,
+      "shown_load_percent": 10,
+      "sha256": "76cb965622cbc0148e4f8c43a38576a54eb79679bedd4de5b846e5ac675c2a1f"
+    }
+  ]
+}

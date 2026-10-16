@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-09",
+  "python": "3.12.14",
+  "unit_and_integration_tests": 42,
+  "streamlit_version": "1.41.1",
+  "app_test": "passed",
+  "ruff": "passed",
+  "neural_smoke_test": {
+    "status": "passed",
+    "details": "experiments/inference_smoke.json"
+  },
+  "original_metro_evaluation_rerun": true,
+  "original_training_rerun": false,
+  "macos_test": false,
+  "github_ci_executed": false,
+  "latest_check_date": "2026-10-17",
+  "dataset_import_tests": "passed",
+  "combined_app_inference_environment": "passed; pyarrow pinned to 19.0.1",
+  "full_historical_gpu_training_run_executed": false,
+  "portfolio_layout": "full original study: data preparation, baseline, fine-tuning, short run, 350-setting search, visual examples, error analysis and model selection",
+  "training_history_epochs": 30,
+  "historical_report_figures": 3,
+  "reported_aggregate_comparison_source": "report printed page 31",
+  "training_losses_extracted_epochs": 30
+}

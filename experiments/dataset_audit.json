@@ -1,0 +1,21 @@
+{
+  "splits": {
+    "train": {
+      "images": 81,
+      "people": 679,
+      "verified_empty_labels": 9,
+      "sha256": "4a16cbaee5b2e7e2009b93c40580eec67b5fffe6183c138390fdd27bc778ae61"
+    },
+    "valid": {
+      "images": 21,
+      "people": 159,
+      "verified_empty_labels": 1,
+      "sha256": "47eee1d82cf2b3ad9dd01a6a3a96081ec17bb406e6c2c451cedcbcfb8646a9a7"
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "duplicate_images": [],
+  "valid": true,
+  "source_archive_sha256": "b839b2846ca4cb0830c7a0c44cf68698153789e749444a63a8008d74de31e1c1"
+}

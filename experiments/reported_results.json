@@ -1,0 +1,39 @@
+{
+  "provenance": "Manually transcribed from the supplied practice report; not rerun",
+  "original_data_available": true,
+  "original_weights_available": false,
+  "dataset": {
+    "train_images": 81,
+    "validation_images": 21,
+    "source_pages": "19-20"
+  },
+  "baseline": {
+    "model": "YOLOv5s pretrained",
+    "n_images": 21,
+    "mean_true_count": 7.57,
+    "mean_pred_count": 7.19,
+    "count_mae": 1.05,
+    "max_count_error": 5,
+    "occupancy_mae_pp": 5.24,
+    "mean_image_confidence": 0.519,
+    "capacity": 20,
+    "source_page": "26",
+    "confidence_threshold": null,
+    "iou_threshold": null
+  },
+  "finetuned_30_epochs": {
+    "image_size": 640,
+    "batch_size": 16,
+    "epochs": 30,
+    "precision": 0.766,
+    "recall": 0.654,
+    "map50": 0.79,
+    "map50_95": 0.482,
+    "count_mae": null,
+    "occupancy_mae_pp": null,
+    "source_pages": "29-31"
+  },
+  "conclusion": "Report states that fine-tuning did not improve applied counting errors",
+  "warning": "5.24 percentage points is derived from count MAE / capacity; not independent evidence",
+  "original_data_received": "2026-10-13"
+}

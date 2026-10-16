@@ -1,0 +1,24 @@
+{
+  "model": "YOLOv5s",
+  "initialization": "COCO pretrained",
+  "target_class": "person",
+  "class_id": 0,
+  "dataset": {
+    "train": 81,
+    "validation": 21,
+    "split_policy": "original split retained"
+  },
+  "training": {
+    "epochs": 30,
+    "batch": 16,
+    "image_size": 640,
+    "optimizer": "SGD",
+    "seed": 0,
+    "hyp": "data/hyps/hyp.scratch-low.yaml"
+  },
+  "historical_revision": "70b964b6d5067fff621f724c85d0e39e6b4c8e4e",
+  "capacity": 20,
+  "primary_metric": "count_mae",
+  "sweep_configurations": 350,
+  "historical_weights_available": false
+}

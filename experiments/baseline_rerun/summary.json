@@ -1,0 +1,33 @@
+{
+  "summary": {
+    "n_images": 21,
+    "mean_true_count": 7.571428571428571,
+    "mean_pred_count": 7.190476190476191,
+    "count_mae": 1.0476190476190477,
+    "count_bias": -0.38095238095238093,
+    "max_count_error": 5,
+    "exact_count_accuracy": 0.47619047619047616,
+    "occupancy_mae_pp": 5.238095238095238,
+    "mean_image_confidence": 0.51897529319583
+  },
+  "config": {
+    "confidence": 0.25,
+    "iou": 0.45,
+    "max_detections": 100,
+    "image_size": 640
+  },
+  "dataset_sha256": "47eee1d82cf2b3ad9dd01a6a3a96081ec17bb406e6c2c451cedcbcfb8646a9a7",
+  "weights_sha256": "8b3b748c1e592ddd8868022e8732fde20025197328490623cc16c6f24d0782ee",
+  "weights": "weights/yolov5s.pt",
+  "created_at": "2026-10-13T20:33:28.463846+00:00",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "provenance": "Executed on the received 81/21 archive validation split on 2026-10-13",
+  "yolov5_commit": "915bbf294bb74c859f0b41f1c23bc395014ea679",
+  "libraries": {
+    "torch": "2.5.1+cpu",
+    "torchvision": "0.20.1+cpu",
+    "numpy": "1.26.4",
+    "device": "cpu"
+  }
+}

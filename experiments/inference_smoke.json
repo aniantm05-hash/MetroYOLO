@@ -1,0 +1,60 @@
+{
+  "source": "yolov5",
+  "count": 4,
+  "capacity": 20,
+  "visible_area_load_percent": 20.0,
+  "detections": [
+    {
+      "x1": 671.7877807617188,
+      "y1": 395.3720397949219,
+      "x2": 810.0,
+      "y2": 878.361328125,
+      "confidence": 0.8961723446846008,
+      "class_id": 0
+    },
+    {
+      "x1": 220.6570587158203,
+      "y1": 408.1408996582031,
+      "x2": 346.1673278808594,
+      "y2": 867.3812866210938,
+      "confidence": 0.8702477216720581,
+      "class_id": 0
+    },
+    {
+      "x1": 49.25080490112305,
+      "y1": 389.99053955078125,
+      "x2": 248.0782012939453,
+      "y2": 912.4585571289062,
+      "confidence": 0.8515626192092896,
+      "class_id": 0
+    },
+    {
+      "x1": 0.045447349548339844,
+      "y1": 552.4113159179688,
+      "x2": 67.88232421875,
+      "y2": 875.3746337890625,
+      "confidence": 0.5349411964416504,
+      "class_id": 0
+    }
+  ],
+  "config": {
+    "confidence": 0.25,
+    "iou": 0.45,
+    "max_detections": 100,
+    "image_size": 640
+  },
+  "purpose": "Inference integration smoke test; not the metro validation benchmark",
+  "input_source": "ultralytics/yolov5 v7.0 data/images/bus.jpg",
+  "input_sha256": "33b198a1d2839bb9ac4c65d61f9e852196793cae9a0781360859425f6022b69c",
+  "weights_source": "https://github.com/ultralytics/yolov5/releases/download/v7.0/yolov5s.pt",
+  "weights_sha256": "8b3b748c1e592ddd8868022e8732fde20025197328490623cc16c6f24d0782ee",
+  "yolov5_commit": "915bbf294bb74c859f0b41f1c23bc395014ea679",
+  "runtime": {
+    "python": "3.12.14",
+    "torch": "2.5.1+cpu",
+    "torchvision": "0.20.1+cpu",
+    "numpy": "1.26.4",
+    "platform": "Linux x86_64",
+    "device": "cpu"
+  }
+}

@@ -1,0 +1,6 @@
+# Replace with an absolute dataset root. All labels must use class 0 (person).
+path: /absolute/path/to/dataset
+train: train/images
+val: valid/images
+nc: 1
+names: [person]
